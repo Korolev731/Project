@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "node1" do |node|
     node.vm.box = "bento/ubuntu-18.04"
     node.vm.define "nodelab_test"
-    node.vm.network "public_network", ip: "192.168.1.244",  bridge: "enp0s8"
+    node.vm.network "public_network", ip: "192.168.1.244",  bridge: "Wireless LAN adapter Wireless Network Connection"
     node.vm.provider "virtualbox" do |vb|
        vb.gui = false
        vb.memory = "512"
