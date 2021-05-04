@@ -3,4 +3,4 @@ processwire:
   hosts:
     test:
       ansible_host: 10.20.30.20
-      ansible_ssh_user: host1
+      
