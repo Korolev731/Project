@@ -1,0 +1,81 @@
+# Update
+---
+- hosts: all
+  become: true
+  vars_files:
+    - vars/default.yaml
+ 
+
+  tasks:  
+
+  # WordPress update
+
+    - name: Create backup directory
+      file:
+        path: /home/backup
+        state: directory
+    
+    - name: Backup wordpress files
+      shell: /usr/bin/rsync -avzh /var/www/{{ http_host }}/wordpress/ /home/backup
+      become: true
+      
+    - name: Creates temp directory
+      file:
+        path: /home/tmp
+        state: directory
+
+    - name: Download and unpack latest WordPress
+      unarchive:
+        src: https://wordpress.org/latest.tar.gz
+        dest: "/home/tmp"
+        remote_src: yes
+        creates: "home/tmp/wordpress"
+      tags: [ wordpress ]
+    
+    - name: Wait until wordpress has been downloaded
+      wait_for:
+        path: "/home/tmp/wordpress/index.php"
+        state: present
+
+    - name: copy wordpress to website
+      shell: /bin/cp -rf /home/tmp/wordpress/* /var/www/{{ http_host }}/wordpress/
+      become: true
+
+    - name: Set ownership
+      file:
+        path: "/var/www/{{ http_host }}"
+        state: directory
+        recurse: yes
+        owner: www-data
+        group: www-data
+      tags: [ wordpress ]
+ 
+    - name: Set up wp-config
+      template:
+        src: "files/wp-config.php.j2"
+        dest: "/var/www/{{ http_host }}/wordpress/wp-config.php"
+      tags: [ wordpress ]
+    
+    - name: delete tmp wordpress
+      file:
+        path: /home/tmp/wordpress
+        state: absent
+      become: true
+    
+    - name: Slack message
+      slack:
+        domain: domain.slack.com
+        token: "T01PY4S6XNU/B0212HB97CZ/EFAn8eYYtdSMxNNRAKiu92kX"
+        msg: "WordPress update complete"
+        channel: "general"
+      
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted

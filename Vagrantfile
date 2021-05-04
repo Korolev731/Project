@@ -11,7 +11,6 @@ PUB_KEY_PATH = "~/.ssh/id_rsa.pub"
 
 MACHINES = {
   'host1'  =>  { vcpu: '1', ram: '512', ip: '10.20.30.20'},
-  'host2' =>  { vcpu: '1', ram: '512', ip: '10.20.30.21'},
   'jump' =>  { vcpu: '1', ram: '512', ip: '10.20.30.22'},
 }
 
