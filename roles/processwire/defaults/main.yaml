@@ -1,8 +1,12 @@
 ---
 apt_packages:
   - git
+  - apache2
+  - mysql-server
+  - mysql-client
+  - unzip 
+  - wget
   
-    
 app_db_host: "127.0.0.1"
 app_db_name: "processwire"
 app_db_user: "processwire"
