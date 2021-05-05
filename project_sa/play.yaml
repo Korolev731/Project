@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  roles:
+    - webserver
+    - data_base
+    - joomla
+
