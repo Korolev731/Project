@@ -8,8 +8,6 @@
   tasks:
     - name: Install prerequisites
       apt: name=aptitude state=latest update_cache=yes force_apt_get=yes 
-      tags: 
-        - s1
 
     - name: Install LAMP Packages
       apt: name={{ item }} update_cache=yes state=latest
