@@ -6,8 +6,6 @@
     - vars/default.yaml
 
   tasks:
-    - name: Install prerequisites
-      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes 
 
     - name: Install LAMP Packages
       apt: name={{ item }} update_cache=yes state=latest
