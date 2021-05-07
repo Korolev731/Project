@@ -7,7 +7,7 @@
 
   tasks:
     - name: Install prerequisites
-      apt: name=aptitude update_cache=yes state=latest force_apt_get=yes
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes 
       tags: 
         - s1
 
