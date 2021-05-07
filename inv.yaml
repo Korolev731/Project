@@ -1,6 +1,6 @@
 ---
-- processwire:
-   hosts:
+processwire:
+  hosts:
     test:
       ansible_host: 192.168.202.10
       
