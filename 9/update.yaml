@@ -1,0 +1,69 @@
+---
+- hosts: all
+  gather_facts: yes 
+  become: yes
+  vars:
+    name_cms: "wordpress"
+    name_db: "mariadb"
+    docker_image: "bitnami/wordpress:latest"
+
+  tasks:
+    - name: Pull docker image
+      shell: |
+        docker pull "{{ docker_image }}"
+      args:
+        executable: /bin/bash
+
+    - name: Stop docker container
+      shell: |
+        docker stop "{{ name_cms }}"
+      args:
+        executable: /bin/bash
+
+    - name: Backup data
+      shell: |
+        rsync -a /var/lib/docker/volumes/ /data/backups/volumes.bakup.$(date +%Y%m%d-%H.%M.%S)
+      args:
+        executable: /bin/bash
+
+    - name: Remove docker container
+      shell: |
+        docker rm "{{ name_cms }}"
+      args:
+        executable: /bin/bash
+    
+    - name: Docker run wordpress
+      shell: |
+        docker run -d --name wordpress \
+        -p 8080:8080 -p 8443:8443 \
+        -e ALLOW_EMPTY_PASSWORD=yes \
+        -e WORDPRESS_DATABASE_USER=bn_wordpress \
+        -e WORDPRESS_DATABASE_NAME=bitnami_wordpress \
+        --network wordpress-network \
+        --volume wordpress_data:/bitnami/wordpress \
+        bitnami/wordpress:latest
+      args:
+        executable: /bin/bash
+
+    - name: Checks if App working correctly
+      block:
+        - name: Checks if it works
+          uri:
+            url: "http://127.0.0.1:8080"
+            return_content: yes
+          register: out
+          failed_when: "'Comrades' not in out.content"
+          become: yes
+        
+        - name: Show content
+          debug:
+            msg: "out.status"
+        
+        - name: Notify Slack if all good
+          include_role:
+            name: slack_handler
+            tasks_from: good
+      rescue:
+        - include_role:
+            name: slack_handler
+            tasks_from: failure

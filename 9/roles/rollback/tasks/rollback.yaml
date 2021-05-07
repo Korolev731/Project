@@ -1,0 +1,31 @@
+---
+- name: Show container "{{ name_cms }}"
+  shell: |
+    docker ps -a
+    exit 0
+  args:
+    executable: /bin/bash
+  register: out
+
+- debug:
+    msg: "{{ out.stdout_lines }}"
+
+- name: Remove docker container and image "{{ name_cms }}" 
+  shell: |
+    docker stop "{{ name_cms }}"
+    docker rm -f "{{ name_cms }}"
+    docker rmi -f "{{ name_cms }}"
+    exit 0
+  args:
+    executable: /bin/bash
+  when: "'{{ name_cms }}' in out.stdout"
+
+- name: Remove docker container and image "{{ name_db }}"
+  shell: |
+    docker stop "{{ name_db }}"
+    docker rm -f "{{ name_db }}"
+    docker rmi -f "{{ name_db }}"
+    exit 0
+  args:
+    executable: /bin/bash
+  when: "'{{ name_db }}' in out.stdout"

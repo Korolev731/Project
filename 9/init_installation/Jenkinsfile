@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'Git_repository', defaultValue: 'git@github.com:TrushynA/sa2_git.git', description: 'My repository (Clone with SSH)')
+        credentials(name: 'Git_credentials', defaultValue: 'github_token', description: 'Credentials to use for github repo', credentialType: "SSH username with private key", required: true )
+    }
+    
+    stages {
+        stage('Pull git repository') {
+            steps {
+                git credentialsId: "${params.Git_credentials}", url: "${params.Git_repository}"
+            }
+        }
+
+        stage('check files') {
+            steps { 
+                sh '''
+                    whoami
+                    printf "\n"
+                    pwd
+                    printf "\n"
+                    ls -la
+                '''  
+            }
+        }
+
+        stage('Install docker to target') {
+            steps {
+                ansiblePlaybook(
+                    inventory: 'inventory.yaml',
+                    playbook: 'install_init.yaml'
+                )
+            }
+        }
+    }
+    post {
+        success {
+            slackSend (color: '#00FF00', message: "SUCCESSFULL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        }
+        failure {
+            slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        }
+    }
+}
