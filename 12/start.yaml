@@ -54,7 +54,7 @@
   # MySQL Configuration
 
     - mysql_user:
-        name: root
+       name: root
         password: abc123
         login_unix_socket: /var/run/mysqld/mysqld.sock
 
