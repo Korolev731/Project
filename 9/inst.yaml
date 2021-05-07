@@ -18,16 +18,7 @@
         msg: "{{ out.stdout_lines }}"
 
 
-    - name: Configure firewalld
-      firewalld:
-        zone: public
-        service: "{{ item }}"
-        state: enabled
-        permanent: yes
-        immediate: yes
-      with_items:
-        - http
-        - https
+
       
     - name: Test run docker
       shell: |
