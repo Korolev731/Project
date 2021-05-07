@@ -36,10 +36,10 @@
       notify: Reload Apache
       tags: [ apache ]
 
-    - name: Enable rewrite module
-      shell: /usr/sbin/a2enmod rewrite
-      notify: Reload Apache
-      tags: [ apache ]
+    - name: enable mod_rewrite in apache.
+      shell: "a2enmod rewrite"
+      register: a2enmodrewrite
+      changed_when: "'already enabled' not in     a2enmodrewrite.stdout"
 
     - name: Enable new site
       shell: /usr/sbin/a2ensite {{ http_conf }}
