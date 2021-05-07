@@ -17,11 +17,6 @@
       debug:
         msg: "{{ out.stdout_lines }}"
 
-    - name: Make sure firewalld is enabled
-      systemd:
-        name: firewall
-        state: started
-        enabled: yes
 
     - name: Configure firewalld
       firewalld:
