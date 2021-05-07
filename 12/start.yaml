@@ -11,7 +11,7 @@
 
     - name: Install LAMP Packages
       apt: name={{ item }} update_cache=yes state=latest
-      loop: [ 'apache2', 'mysql-server', 'mysql-client', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' ]
+      loop: [ 'apache2', 'mysql-server', 'mysql-client', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php', 'python-apt', 'python3-apt' ]
       tags: [ system ]
 
     - name: Install PHP Extensions
@@ -52,16 +52,10 @@
       tags: [ apache ]
 
   # MySQL Configuration
-    - name: Determine required MySQL Python libraries.
-      set_fact:
-         deb_mysql_python_package: "{% if 'python3' in ansible_python_interpreter|default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
 
-    - name: Ensure MySQL Python libraries are installed.
-      apt: "name={{ deb_mysql_python_package }} state=present"
-      
     - mysql_user:
        name: password
-       password: password
+       password: abc123
        login_unix_socket: /var/run/mysqld/mysqld.sock
 
     - name: Remove all anonymous user accounts
