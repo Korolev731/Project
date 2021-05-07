@@ -9,6 +9,6 @@ mysql_user: "sammy"
 mysql_password: "password"
 
 #HTTP Settings
-http_host: "wp-12.sa"
-http_conf: "wp-12.conf"
+http_host: "wp-9.sa"
+http_conf: "wp-9.conf"
 http_port: "80"

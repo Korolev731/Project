@@ -1,5 +1,5 @@
 all_hosts:
   hosts:
     wordpress:
-      ansible_host: 10.20.30.20
+      ansible_host: 192.168.201.5
     

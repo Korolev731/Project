@@ -136,13 +136,7 @@
         dest: "/var/www/{{ http_host }}/wordpress/wp-config.php"
       tags: [ wordpress ]
     
-    - name: Slack message
-      slack:
-        domain: domain.slack.com
-        token: "T01PY4S6XNU/B0212HB97CZ/EFAn8eYYtdSMxNNRAKiu92kX"
-        msg: "WordPress installation complete"
-        channel: "general"
-
+   
   handlers:
     - name: Reload Apache
       service:

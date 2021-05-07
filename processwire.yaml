@@ -2,4 +2,4 @@
 - hosts: test
   become: True
   roles:
-    - processwire
+    - processwi
