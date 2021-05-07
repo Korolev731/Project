@@ -19,7 +19,7 @@
 
     - name: Make sure firewalld is enabled
       systemd:
-        name: firewalld
+        name: firewall
         state: started
         enabled: yes
 
