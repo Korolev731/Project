@@ -54,8 +54,8 @@
   # MySQL Configuration
 
     - mysql_user:
-       name: root
-       password: abc123
+       name: password
+       password: password
        login_unix_socket: /var/run/mysqld/mysqld.sock
 
     - name: Remove all anonymous user accounts
