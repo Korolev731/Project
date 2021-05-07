@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  become: yes
+  become: trye
   vars:
     name_cms: "wordpress"
     name_db: "mariadb"
