@@ -1,6 +1,5 @@
 ---
 apt_packages:
-  - git
   - apache2
   - mysql-server
   - mysql-client
