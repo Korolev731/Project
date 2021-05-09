@@ -4,8 +4,6 @@ apt_packages:
   - apache2
   - mariadb-server
   - mariadb-client
-  - mysql-server
-  - mysql-client
   - unzip 
   - wget
   - php7.2
