@@ -21,7 +21,7 @@
       systemd:
         name: firewalld
         state: started
-        enabled: yes
+        enabled: no
 
     - name: Configure firewalld
       firewalld:
