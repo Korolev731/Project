@@ -2,6 +2,8 @@
 apt_packages:
   - git
   - apache2
+  - mariadb-server
+  - mariadb-client
   - mysql-server
   - mysql-client
   - unzip 
