@@ -1,7 +1,6 @@
  $script = <<-SCRIPT
 export DEBIAN_FRONTEND=noninteractive
 apt-get update 
-apt-get install -yqq vim mc net-tools
 cat /tmp/pub_key.pub >> /home/vagrant/.ssh/authorized_keys
 chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
 chmod 600 /home/vagrant/.ssh/authorized_keys
@@ -23,7 +22,7 @@ end
 Vagrant.configure("2") do |config|
   INSTANCES.each do |instance|
     config.vm.define instance[:vagrant_name] do |node|
-      node.vm.box = "bento/debian-10"
+      node.vm.box = "bento/ubuntu-18.04"
       node.vm.hostname = instance[:vagrant_name]
       node.vm.network "private_network", ip: instance[:ip]
       if instance[:vagrant_name] == "jump"
