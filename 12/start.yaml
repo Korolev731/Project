@@ -99,7 +99,7 @@
     - name: "UFW - Allow HTTP on port {{ http_port }}"
       ufw:
         rule: allow
-        port: '80'
+        to_port: '80'
         proto: tcp
       tags: [ system ]
 
