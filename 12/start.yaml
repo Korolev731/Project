@@ -6,17 +6,6 @@
     - vars/default.yaml
 
   tasks:
-    - name: MySQL. Install and setup
-      template: 
-        src: my.cnf.j2 
-        dest: ~/.my.cnf 
-        owner: root 
-        mode: 0600
-        notify: mysql restart 
-    - name: Install prerequisites
-      apt: name=aptitude update_cache=yes state=latest force_apt_get=yes
-      tags: [ system ]
-
     - name: Install LAMP Packages
       apt: name={{ item }} update_cache=yes state=latest
       loop: [ 'apache2', 'mysql-server', 'mysql-client', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' ]
