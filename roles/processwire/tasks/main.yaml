@@ -1,10 +1,9 @@
 - name: apt | update repository cache
   apt: 
     update_cache: yes
-- name: Install packages
-  apt:
-    name: "{{ apt_packages }}"
-    state: latest
+- name: Install LAMP Packages
+  apt: name={{ item }} update_cache=yes state=latest
+  loop: [ 'apache2', 'mysql-server', 'mysql-client', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' , 'python-apt', 'python3-apt']
 - name: MySQL. Install and setup
   template: 
     src: my.cnf.j2 
