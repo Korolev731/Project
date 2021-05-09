@@ -2,8 +2,8 @@
   apt: 
     update_cache: yes
 - name: Install LAMP Packages
-  apt: name={{ item }} update_cache=yes state=latest
-  loop: [ 'apache2', 'mysql-server', 'mysql-client', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' , 'python-apt', 'python3-apt', 'apache2', , 'unzip', 'wget']
+   apt: name={{ item }} update_cache=yes state=latest
+   loop: [ 'apache2', 'mysql-server', 'mysql-client', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' , 'python-apt', 'python3-apt', 'apache2', , 'unzip', 'wget']
 - name: MySQL. Install and setup
   template: 
     src: my.cnf.j2 
