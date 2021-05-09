@@ -1,6 +1,6 @@
 ---
 - name: Update OS
-    shell: |
+  shell: |
    sudo yum -yqq update
 
 - name: Copy nginx.repo
