@@ -50,12 +50,11 @@
 
   # MySQL Configuration
 
-    - name: Set the root password
-      mysql_user:
-        name: root
-        password: "{{ mysql_root_password }}"
-        login_unix_socket: /var/run/mysqld/mysqld.sock
-      tags: [ mysql, mysql-root ]
+    - name: Example using login_unix_socket to connect to server
+      community.mysql.mysql_user:
+      name: password
+      password: password
+      login_unix_socket: /var/run/mysqld/mysqld.sock
 
     - name: Remove all anonymous user accounts
       mysql_user:
