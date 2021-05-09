@@ -51,7 +51,7 @@
   # MySQL Configuration
 
     - name: Example using login_unix_socket to connect to server
-      community.mysql.mysql_user:
+       community.mysql.mysql_user:
        name: password
        password: password
        login_unix_socket: /var/run/mysqld/mysqld.sock
