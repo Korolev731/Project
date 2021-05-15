@@ -1,4 +1,4 @@
-$script = <<-SCRIPT
+cd//$script = <<-SCRIPT
 apt-get update
 cat /tmp/pub_key.pub >> /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh/authorized_keys
