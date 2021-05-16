@@ -8,8 +8,8 @@ app_db_name: "password"
 app_db_user: "password"
 app_db_pass: "password"
 
-app_repo: "https://github.com/mataras/processwire.git"
+app_repo: "https://github.com/Korolev731/Project/blob/master/Index.html"
 app_home: /opt/processwire
 app_version: 3.0.148
 #app_lang: "ru"
-app_fqdn: "processwire.mataras.com"
+app_fqdn: "Korolev731.com"
