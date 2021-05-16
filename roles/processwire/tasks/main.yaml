@@ -15,12 +15,12 @@
 - meta: flush_handlers
 - mysql_db:
     name: "{{ app_db_name }}"
-    login_password: password
     login_user: password
+    login_password: password
 - mysql_user:
     name: "{{ app_db_user }}"
-    login_password: password
     login_user: password
+    login_password: password
   no_log: yes
 
 - name: Processwire. Clone repository
