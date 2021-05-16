@@ -53,13 +53,13 @@
 
   # MySQL Configuration
 
-    - name: Set the root password
-      mysql_user:
-        name: root
-        password: password
-        login_unix_socket: /var/run/mysqld/mysqld.sock
-      tags: 1my
-
+ #   - name: Set the root password
+ #     mysql_user:
+ #       name: root
+ #       password: password
+#        login_unix_socket: #/var/run/mysqld/mysqld.sock
+  #    tags: 1my
+#
     - name: Remove all anonymous user accounts
       mysql_user:
         name: ''
