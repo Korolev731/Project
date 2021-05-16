@@ -1,4 +1,0 @@
-- hosts: wordpress
-  become: True
-  roles:
-    - proxy-deploy

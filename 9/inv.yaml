@@ -1,5 +1,0 @@
----
-all:
-  hosts:
-    wordpress:
-      ansible_host: 10.20.30.20

@@ -1,7 +1,0 @@
----
-yum_install_packages:
-  - epel-release
-  - yum-utils
-  - nginx
-  - git
-  - wget
