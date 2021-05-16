@@ -19,8 +19,8 @@
     login_unix_socket: /var/run/mysqld/mysqld.sock
 - mysql_user:
     name: "{{ app_db_user }}"
-    login_password: "{{ app_db_user }}"
-    login_user: "{{ app_db_user }}"
+    login_password: password
+    login_user: password
   no_log: yes
 
 - name: Processwire. Clone repository
