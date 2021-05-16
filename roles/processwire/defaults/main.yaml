@@ -4,9 +4,9 @@ apt_packages:
  
     
 app_db_host: "127.0.0.1"
-app_db_name: "processwire"
-app_db_user: "processwire"
-app_db_pass: "processwire"
+app_db_name: "password"
+app_db_user: "password"
+app_db_pass: "password"
 
 app_repo: "https://github.com/mataras/processwire.git"
 app_home: /opt/processwire
