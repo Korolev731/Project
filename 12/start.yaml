@@ -54,7 +54,7 @@
   # MySQL Configuration
 
     - name: Set the root password
-      mysql_user:
+       mysql_user:
         login_user=root
         login_password=''
         name=root
