@@ -55,9 +55,23 @@
 
     - name: Set the root password
       mysql_user:
-        name: root
-        password: password
-        login_unix_socket: /var/run/mysqld/mysqld.sock
+        login_user=root
+        login_password=''
+        name=root
+        host="{{ item }}"
+        password="{{ mysql_root_password }}"
+        check_implicit_admin=yes
+        priv="*.*:ALL,GRANT"
+      with_items:
+        - "{{ ansible_hostname }}"
+        - 127.0.0.1
+        - ::1
+        - localhost
+      ignore_errors: true
+ #     mysql_user:
+ #       name: root
+ #       password: password
+ #       login_unix_socket: #/var/run/mysqld/mysqld.sock
       tags: 1my
 
     - name: Remove all anonymous user accounts
