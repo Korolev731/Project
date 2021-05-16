@@ -13,10 +13,10 @@
     mode: 0600
   notify: mysql restart 
 - meta: flush_handlers
-- mysql_db:
-    name: "{{ app_db_name }}"
-    encoding: utf8
-    login_unix_socket: /var/run/mysqld/mysqld.sock
+#- mysql_db:
+#    name: "{{ app_db_name }}"
+#    encoding: utf8
+#    login_unix_socket: /var/run/mysqld/mysqld.sock
 - mysql_user:
     name: "{{ app_db_user }}"
     password: "{{ app_db_pass }}"
