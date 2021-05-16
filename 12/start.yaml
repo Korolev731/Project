@@ -77,13 +77,13 @@
         login_password: "{{ mysql_root_password }}"
       tags: 3my
     
-#    - name: Creates database for WordPress
-#      mysql_db:
-#        name: "{{ mysql_db }}"
-#        state: present
-#        login_user: password
-#        login_password: "{{ mysql_root_password }}"
-#      tags: 4my
+    - name: Creates database for WordPress
+      mysql_db:
+        name: "{{ mysql_db }}"
+        state: present
+        login_user: password
+        login_password: "{{ mysql_root_password }}"
+      tags: 4my
 
   #  - name: Create MySQL user for WordPress
   #    mysql_user:
