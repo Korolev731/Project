@@ -2,10 +2,12 @@
   apt: 
     update_cache: yes
 - name: Install packages
-  apt:
-    name: "{{ apt_packages }}"
-    state: latest
-    update_cache: yes
+  apt: name={{ item }} update_cache=yes state=latest
+    loop: ['ruby-full', 'build-essential', 'libmysqlclient-dev', 'imagemagick', 'libmagickwand-dev', 'apache2', 'libapache2-mod-passenger', 'mysql-server', 'mysql-client', 'python-pymysql', 'python-mysqldb']
+
+ #   name: "{{ apt_packages }}"
+ #   state: latest
+ #   update_cache: yes
 - name: MySQL. Install and setup
   template: 
     src: my.cnf.j2 
