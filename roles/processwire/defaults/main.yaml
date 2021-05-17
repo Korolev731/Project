@@ -25,7 +25,7 @@ app_db_pass: "password"
 #app_version: 3.0.148
 #app_lang: "ru"
 #app_fqdn: "Korolev731.com"
-app_repo: "https://github.com/mataras/processwire.git"
+app_repo: "https://github.com/processwire/processwire.git"
 app_home: /opt/processwire
 app_version: 3.0.148
 #app_lang: "ru"
